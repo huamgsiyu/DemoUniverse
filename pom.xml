@@ -8,5 +8,153 @@
     <artifactId>DemoUniverse</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.0.RELEASE</version>
+    </parent>
 
+    <properties>
+        <!-- 项目编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- JDK版本 -->
+        <java.version>1.8</java.version>
+        <!-- SpringBoot版本 -->
+        <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
+        <!-- druid连接池 -->
+        <druid.version>1.1.10</druid.version>
+        <!-- MySQL驱动 -->
+        <mysql.version>5.1.47</mysql.version>
+        <!-- mybatis plus -->
+        <mybatis-plus.version>3.1.0</mybatis-plus.version>
+        <!-- swagger2 -->
+        <swagger2.version>2.9.2</swagger2.version>
+        <swagger-bootstrap-ui.version>1.9.2</swagger-bootstrap-ui.version>
+        <!-- fastJson -->
+        <fastjson.version>1.2.58</fastjson.version>
+
+    </properties>
+    
+    <dependencyManagement>
+        <dependencies>
+            <!-- SpringBoot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <!-- END SpringBoot -->
+
+            <!-- 单元测试，scope=test表示编译和运行时都不需要，测试编译和运行时才需要 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- END 单元测试，scope=test表示编译和运行时都不需要，测试编译和运行时才需要 -->
+
+            <!-- Web启动器 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <!-- END Web启动器 -->
+
+            <!-- AOP -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <!-- END AOP -->
+
+            <!-- redis -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <scope>provided</scope>
+                <optional>true</optional>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <!-- END redis -->
+
+            <!-- 热部署，optional为可选依赖，true表示当其他模块引用本模块时，devtools依赖不会传递到其他模块 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <version>${spring-boot.version}</version>
+                <optional>true</optional>
+            </dependency>
+            <!-- END 热部署，optional为可选依赖，true表示当其他模块引用本模块时，devtools依赖不会传递到其他模块 -->
+
+            <!-- druid连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!-- END druid连接池 -->
+
+            <!-- Mysql驱动 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!-- END Mysql驱动 -->
+
+            <!-- mybatis-plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!-- END mybatis-plus -->
+
+            <!-- lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!-- END lombok -->
+
+            <!-- fastJson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!--END fastJson -->
+
+            <!-- Swagger2 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>${swagger-bootstrap-ui.version}</version>
+            </dependency>
+            <!-- END Swagger2 -->
+            <!-- slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <!-- END slf4j-api -->
+
+        </dependencies>
+    </dependencyManagement>
 </project>
