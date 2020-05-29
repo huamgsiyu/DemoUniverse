@@ -11,6 +11,8 @@
     <modules>
         <module>Multi-Data-Source</module>
         <module>Mybatis-Mysql-Dependency</module>
+        <module>SpringBoot-Dependency</module>
+        <module>Common-Dependency</module>
     </modules>
 
     <parent>
