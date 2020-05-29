@@ -6,7 +6,11 @@
 
     <groupId>com.syh.demo</groupId>
     <artifactId>DemoUniverse</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>Multi-Data-Source</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
