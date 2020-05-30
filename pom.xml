@@ -13,6 +13,7 @@
         <module>Mybatis-Mysql-Dependency</module>
         <module>SpringBoot-Dependency</module>
         <module>Common-Dependency</module>
+        <module>WebService-ASMX</module>
     </modules>
 
     <parent>
@@ -42,6 +43,13 @@
         <swagger-bootstrap-ui.version>1.9.2</swagger-bootstrap-ui.version>
         <!-- fastJson -->
         <fastjson.version>1.2.58</fastjson.version>
+
+        <axis.version>1.4</axis.version>
+        <jaxrpc.version>1.4.0</jaxrpc.version>
+        <commons-discovery.version>0.5</commons-discovery.version>
+        <wsdl4j.version>1.6.2</wsdl4j.version>
+        <activation.version>1.1.1</activation.version>
+        <mail.version>1.4.7</mail.version>
 
     </properties>
     
@@ -172,6 +180,61 @@
             </dependency>
             <!-- END slf4j-api -->
 
+            <!-- axis -->
+            <dependency>
+                <groupId>org.apache.axis</groupId>
+                <artifactId>axis</artifactId>
+                <version>${axis.version}</version>
+            </dependency>
+            <!-- END axis -->
+            <!-- JAXRPC -->
+            <dependency>
+                <groupId>org.lucee</groupId>
+                <artifactId>jaxrpc</artifactId>
+                <version>${jaxrpc.version}</version>
+            </dependency>
+            <!-- END JAXRPC -->
+
+            <!-- commons-discovery -->
+            <dependency>
+                <groupId>commons-discovery</groupId>
+                <artifactId>commons-discovery</artifactId>
+                <version>${commons-discovery.version}</version>
+            </dependency>
+            <!-- END commons-discovery -->
+
+            <!-- wsdl4j -->
+            <dependency>
+                <groupId>wsdl4j</groupId>
+                <artifactId>wsdl4j</artifactId>
+                <version>${wsdl4j.version}</version>
+            </dependency>
+            <!-- END wsdl4j -->
+
+            <!-- activation -->
+            <dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>activation</artifactId>
+                <version>${activation.version}</version>
+            </dependency>
+            <!-- END activation -->
+
+            <!-- 邮件 -->
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>${mail.version}</version>
+            </dependency>
+            <!-- END 邮件 -->
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
