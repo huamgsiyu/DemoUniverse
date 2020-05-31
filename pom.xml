@@ -45,6 +45,7 @@
         <fastjson.version>1.2.58</fastjson.version>
 
         <axis.version>1.4</axis.version>
+        <axis2.version>1.6.1-wso2v37</axis2.version>
         <jaxrpc.version>1.4.0</jaxrpc.version>
         <commons-discovery.version>0.5</commons-discovery.version>
         <wsdl4j.version>1.6.2</wsdl4j.version>
@@ -226,6 +227,15 @@
                 <version>${mail.version}</version>
             </dependency>
             <!-- END 邮件 -->
+
+            <!-- axis2 -->
+            <dependency>
+                <groupId>org.apache.axis2.wso2</groupId>
+                <artifactId>axis2</artifactId>
+                <version>${axis2.version}</version>
+            </dependency>
+            <!-- END axis2 -->
+
         </dependencies>
     </dependencyManagement>
 
