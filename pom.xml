@@ -14,6 +14,7 @@
         <module>SpringBoot-Dependency</module>
         <module>Common-Dependency</module>
         <module>WebService-ASMX</module>
+        <module>WebService-WSDL</module>
     </modules>
 
     <parent>
@@ -43,14 +44,28 @@
         <swagger-bootstrap-ui.version>1.9.2</swagger-bootstrap-ui.version>
         <!-- fastJson -->
         <fastjson.version>1.2.58</fastjson.version>
-
-        <axis.version>1.4</axis.version>
+        <!-- axis2 -->
         <axis2.version>1.6.1-wso2v37</axis2.version>
+        <axiom.version>1.2.11-wso2v16</axiom.version>
+        <neethi.version>2.0.4</neethi.version>
+        <xmlschema-core.version>2.2.4</xmlschema-core.version>
+        <org.wso2.securevault.version>1.1.1</org.wso2.securevault.version>
+        <commons-httpclient.version>3.1</commons-httpclient.version>
+        <httpcore.version>4.4.11</httpcore.version>
+        <!-- end axis2 -->
+
+        <!-- axis -->
+        <axis.version>1.4</axis.version>
         <jaxrpc.version>1.4.0</jaxrpc.version>
         <commons-discovery.version>0.5</commons-discovery.version>
         <wsdl4j.version>1.6.2</wsdl4j.version>
         <activation.version>1.1.1</activation.version>
         <mail.version>1.4.7</mail.version>
+        <!-- end axis -->
+
+        <!-- commons-text -->
+        <commons-text.version>1.8</commons-text.version>
+        <!-- end commons-text -->
 
     </properties>
     
@@ -187,46 +202,32 @@
                 <artifactId>axis</artifactId>
                 <version>${axis.version}</version>
             </dependency>
-            <!-- END axis -->
-            <!-- JAXRPC -->
             <dependency>
                 <groupId>org.lucee</groupId>
                 <artifactId>jaxrpc</artifactId>
                 <version>${jaxrpc.version}</version>
             </dependency>
-            <!-- END JAXRPC -->
-
-            <!-- commons-discovery -->
             <dependency>
                 <groupId>commons-discovery</groupId>
                 <artifactId>commons-discovery</artifactId>
                 <version>${commons-discovery.version}</version>
             </dependency>
-            <!-- END commons-discovery -->
-
-            <!-- wsdl4j -->
             <dependency>
                 <groupId>wsdl4j</groupId>
                 <artifactId>wsdl4j</artifactId>
                 <version>${wsdl4j.version}</version>
             </dependency>
-            <!-- END wsdl4j -->
-
-            <!-- activation -->
             <dependency>
                 <groupId>javax.activation</groupId>
                 <artifactId>activation</artifactId>
                 <version>${activation.version}</version>
             </dependency>
-            <!-- END activation -->
-
-            <!-- 邮件 -->
             <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>mail</artifactId>
                 <version>${mail.version}</version>
             </dependency>
-            <!-- END 邮件 -->
+            <!-- END axis -->
 
             <!-- axis2 -->
             <dependency>
@@ -234,8 +235,45 @@
                 <artifactId>axis2</artifactId>
                 <version>${axis2.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.ws.commons.axiom.wso2</groupId>
+                <artifactId>axiom</artifactId>
+                <version>${axiom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.neethi</groupId>
+                <artifactId>neethi</artifactId>
+                <version>${neethi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.ws.xmlschema</groupId>
+                <artifactId>xmlschema-core</artifactId>
+                <version>${xmlschema-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.securevault</groupId>
+                <artifactId>org.wso2.securevault</artifactId>
+                <version>${org.wso2.securevault.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-httpclient</groupId>
+                <artifactId>commons-httpclient</artifactId>
+                <version>${commons-httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${httpcore.version}</version>
+            </dependency>
             <!-- END axis2 -->
 
+            <!-- commons-text -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${commons-text.version}</version>
+            </dependency>
+            <!-- END commons-text -->
         </dependencies>
     </dependencyManagement>
 

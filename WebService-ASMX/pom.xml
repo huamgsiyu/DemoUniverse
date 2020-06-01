@@ -12,12 +12,7 @@
     <artifactId>WebService-ASMX</artifactId>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.apache.axis2.wso2</groupId>-->
-<!--            <artifactId>axis2</artifactId>-->
-<!--            <version>1.6.1-wso2v40</version>-->
-<!--        </dependency>-->
-
+        <!-- axis -->
         <dependency>
             <groupId>org.apache.axis</groupId>
             <artifactId>axis</artifactId>
@@ -38,11 +33,46 @@
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
         </dependency>
-        <!-- 邮件start -->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
         </dependency>
-        <!-- 邮件end -->
+        <!-- END axis -->
+
+        <!-- axis2 -->
+        <dependency>
+            <groupId>org.apache.axis2.wso2</groupId>
+            <artifactId>axis2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ws.commons.axiom.wso2</groupId>
+            <artifactId>axiom</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.neethi</groupId>
+            <artifactId>neethi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ws.xmlschema</groupId>
+            <artifactId>xmlschema-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.securevault</groupId>
+            <artifactId>org.wso2.securevault</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+        </dependency>
+        <!-- END axis2 -->
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+        </dependency>
     </dependencies>
 </project>
