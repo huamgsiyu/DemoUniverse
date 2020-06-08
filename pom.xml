@@ -15,6 +15,9 @@
         <module>Common-Dependency</module>
         <module>WebService-ASMX</module>
         <module>WebService-WSDL</module>
+        <module>SpringBoot-Quartz</module>
+        <module>Swagger2-Dependency</module>
+        <module>MybatisGenerator</module>
     </modules>
 
     <parent>
@@ -66,6 +69,13 @@
         <!-- commons-text -->
         <commons-text.version>1.8</commons-text.version>
         <!-- end commons-text -->
+        <!-- quartz -->
+        <quartz.version>2.2.1</quartz.version>
+        <quartz-jobs.version>2.2.1</quartz-jobs.version>
+        <spring-context-support.version>5.2.4.RELEASE</spring-context-support.version>
+        <pagehelper.version>5.1.6</pagehelper.version>
+        <spring-boot-starter-quartz.version>2.2.5.RELEASE</spring-boot-starter-quartz.version>
+        <!-- end quartz -->
 
     </properties>
     
@@ -274,6 +284,36 @@
                 <version>${commons-text.version}</version>
             </dependency>
             <!-- END commons-text -->
+
+            <!-- quartz -->
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz-jobs</artifactId>
+                <version>${quartz-jobs.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring-context-support.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-quartz</artifactId>
+                <version>${spring-boot-starter-quartz.version}</version>
+            </dependency>
+            <!-- END quartz -->
+
         </dependencies>
     </dependencyManagement>
 
@@ -285,4 +325,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>nexus-aliyun</id>
+            <name>Nexus aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 </project>
