@@ -1,0 +1,121 @@
+package ${package.ServiceImpl};
+
+import org.springframework.stereotype.Service;
+import ${package.Service}.${entity}Service;
+import ${package.Entity}.${entity};
+import ${cfg.daoName};
+import ${cfg.addUpdateDeleteOperationReturnPackage}.${cfg.addUpdateDeleteOperationReturnName};
+
+import java.util.List;
+/**
+ * <p>
+ * $!{table.comment} 业务服务类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+public class ${table.ServiceImplName} implements ${table.ServiceName}{
+    private final ${entity}Dao dao;
+
+    private ${table.ServiceImplName} (${entity}Dao dao) {
+        this.dao = dao;
+    }
+
+    @Override
+    public ${cfg.addUpdateDeleteOperationReturnName} getById (Long id) {
+        try {
+            return ${cfg.addUpdateDeleteOperationReturnName}.succeed(dao.getById(id));
+        } catch (Exception e) {
+            return ${cfg.addUpdateDeleteOperationReturnName}.failureSystemLevel();
+        }
+    }
+
+    @Override
+    public ${cfg.addUpdateDeleteOperationReturnName} getByIds (List<Long> ids) {
+        try {
+            return ${cfg.addUpdateDeleteOperationReturnName}.succeed(dao.listByIds(ids));
+        } catch (Exception e) {
+            return ${cfg.addUpdateDeleteOperationReturnName}.failureSystemLevel();
+        }
+    }
+
+    @Override
+    public ${cfg.addUpdateDeleteOperationReturnName} save (${entity} param${entity}) {
+        try {
+            if (dao.save(param${entity})) {
+                return ${cfg.addUpdateDeleteOperationReturnName}.succeed();
+            } else {
+                return ${cfg.addUpdateDeleteOperationReturnName}.failureBusinessLevel();
+            }
+        } catch (Exception e) {
+            return ${cfg.addUpdateDeleteOperationReturnName}.failureSystemLevel();
+        }
+    }
+
+    @Override
+    public ${cfg.addUpdateDeleteOperationReturnName} saveBatch (List<${entity}> param${entity}s) {
+        try {
+            if (dao.saveBatch(param${entity}s)) {
+                return ${cfg.addUpdateDeleteOperationReturnName}.succeed();
+            } else {
+                return ${cfg.addUpdateDeleteOperationReturnName}.failureBusinessLevel();
+            }
+        } catch (Exception e) {
+            return ${cfg.addUpdateDeleteOperationReturnName}.failureSystemLevel();
+        }
+    }
+
+    @Override
+    public  ${cfg.addUpdateDeleteOperationReturnName} update (${entity} param${entity}) {
+        try {
+            if (dao.updateById(param${entity})) {
+                return ${cfg.addUpdateDeleteOperationReturnName}.succeed();
+            } else {
+                return ${cfg.addUpdateDeleteOperationReturnName}.failureBusinessLevel();
+            }
+        } catch (Exception e) {
+            return ${cfg.addUpdateDeleteOperationReturnName}.failureSystemLevel();
+        }
+    }
+
+    @Override
+    public ${cfg.addUpdateDeleteOperationReturnName} updateBatch (List<${entity}> param${entity}s) {
+        try {
+            if (dao.updateBatchById(param${entity}s)) {
+                return ${cfg.addUpdateDeleteOperationReturnName}.succeed();
+            } else {
+                return ${cfg.addUpdateDeleteOperationReturnName}.failureBusinessLevel();
+            }
+        } catch (Exception e) {
+            return ${cfg.addUpdateDeleteOperationReturnName}.failureSystemLevel();
+        }
+    }
+
+    @Override
+    public ${cfg.addUpdateDeleteOperationReturnName} delete (Long id) {
+        try {
+            if (dao.removeById(id)) {
+                return ${cfg.addUpdateDeleteOperationReturnName}.succeed();
+            } else {
+                return ${cfg.addUpdateDeleteOperationReturnName}.failureBusinessLevel();
+            }
+        } catch (Exception e) {
+            return ${cfg.addUpdateDeleteOperationReturnName}.failureSystemLevel();
+        }
+    }
+
+    @Override
+    public ${cfg.addUpdateDeleteOperationReturnName} deleteBatch (List<Long> ids) {
+        try {
+            if (dao.removeByIds(ids)) {
+                return ${cfg.addUpdateDeleteOperationReturnName}.succeed();
+            } else {
+                return ${cfg.addUpdateDeleteOperationReturnName}.failureBusinessLevel();
+            }
+        } catch (Exception e) {
+            return ${cfg.addUpdateDeleteOperationReturnName}.failureSystemLevel();
+        }
+    }
+}

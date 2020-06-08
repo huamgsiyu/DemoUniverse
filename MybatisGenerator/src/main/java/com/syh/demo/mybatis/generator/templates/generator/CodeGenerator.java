@@ -9,7 +9,6 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 import com.syh.demo.mybatis.generator.templates.config.PropertyInjection;
-import com.syh.demo.mybatis.generator.templates.util.NurseResponseUtil;
 
 import java.util.Map;
 
@@ -17,25 +16,31 @@ public class CodeGenerator {
 
     public static void main(String[] args) {
 
+        /**
+         * 使用注意事项：
+         *  1、数据库表名，多个单词必须以“_”分割
+         *  2、数据库表名和字段注释，千万不要带有换行符，不然实体类会报错，增加工作量
+         */
+
         PropertyInjection propertyInjection = new PropertyInjection();
-        propertyInjection.setAddUpdateDeleteOperationReturnName(NurseResponseUtil.class.getSimpleName());
-        propertyInjection.setAddUpdateDeleteOperationReturnPackage(NurseResponseUtil.class.getPackage().getName());
+        propertyInjection.setAddUpdateDeleteOperationReturnName("NurseResponseUtil");
+        propertyInjection.setAddUpdateDeleteOperationReturnPackage("unicom.cloud.nursing.data.sync.common.util");
         propertyInjection.setSelectOne("");
         propertyInjection.setSelectList("");
         propertyInjection.setSelectMap("");
 
-
         Map<String,Object> propertyInjectionMap = JSONObject.parseObject(JSON.toJSONString(propertyInjection));
-        String tables = "advice_info,advice_operate_info";
+
+        String table = "base_org_info";
         generatorManyTable("HSY",
-                "jdbc:mysql://ip:port/databaseName?useUnicode=true&useSSL=false&characterEncoding=utf8",
+                "jdbc:mysql://127.0.0.1:3306/database?useUnicode=true&useSSL=false&characterEncoding=utf8",
                 "com.mysql.jdbc.Driver",
-                "user",
-                "password",
-                "unicom.cloud.nursing.data.sync.common",
+                "root",
+                "root",
+                "parent",
                 "common",
                 "",
-                tables,
+                table,
                 propertyInjectionMap);
 
 
@@ -104,24 +109,48 @@ public class CodeGenerator {
 
         /* 生成Entity/Mapper/Mapper.xml/Service/ServiceImpl/Controller */
         AutoGenerator mpg = new AutoGenerator();
-        mpg.setGlobalConfig(globalConfig(author, projectModule));
+        GlobalConfig globalConfig = globalConfig(author, projectModule);
+        mpg.setGlobalConfig(globalConfig);
         mpg.setDataSource(dataSourceConfig(url, driverName, username, password));
-        mpg.setPackageInfo(packageConfig(parent, functionModule));
+        PackageConfig packageConfig = packageConfig(parent, functionModule);
+        mpg.setPackageInfo(packageConfig);
         mpg.setStrategy(strategyConfig(tableName));
         mpg.setTemplate(templateConfig());
         mpg.setTemplateEngine(new VelocityTemplateEngine());
         configInjectionProperty(mpg, propertyInjection);
-        mpg.execute();
+
+        StringBuilder entityName = new StringBuilder();
+
+        String[] tableSplit = tableName.split("_");
+        for (String split : tableSplit) {
+            entityName.append(toUpperCase4Index(split));
+        }
+
+        String daoName = packageConfig.getParent() + "." +
+                packageConfig.getService() + "." +
+                entityName.toString() +
+                globalConfig.getServiceName().replaceFirst("%s", "");
+        propertyInjection.put("daoName", daoName);
 
         /* 生成ClientService/ClientService/ClientFallbackFactory */
         AutoGenerator autoGenerator = new AutoGenerator();
-        autoGenerator.setGlobalConfig(globalConfigClientService(author, projectModule));
+        GlobalConfig clientGlobalConfig = globalConfigClientService(author, projectModule);
+        autoGenerator.setGlobalConfig(clientGlobalConfig);
         autoGenerator.setDataSource(dataSourceConfig(url, driverName, username, password));
-        autoGenerator.setPackageInfo(packageConfigClientService(parent, functionModule));
+        PackageConfig clientPackageConfig = packageConfigClientService(parent, functionModule);
+        autoGenerator.setPackageInfo(clientPackageConfig);
         autoGenerator.setStrategy(strategyConfig(tableName));
         autoGenerator.setTemplate(templateConfigClientService());
         autoGenerator.setTemplateEngine(new VelocityTemplateEngine());
         configInjectionProperty(autoGenerator, propertyInjection);
+
+        String serviceName = clientPackageConfig.getParent() + "." +
+                clientPackageConfig.getService() + "." +
+                entityName.toString() +
+                clientGlobalConfig.getServiceName().replaceFirst("%s", "");
+        propertyInjection.put("serviceName", serviceName);
+
+        mpg.execute();
         autoGenerator.execute();
     }
 
@@ -183,7 +212,7 @@ public class CodeGenerator {
         String projectPath = System.getProperty("user.dir");
         GlobalConfig globalConfig = new GlobalConfig();
         globalConfig.setOutputDir(projectPath + "/" + projectModule + "/src/main/java");
-        globalConfig.setFileOverride(false);
+        globalConfig.setFileOverride(true);
         globalConfig.setAuthor(author);
         globalConfig.setSwagger2(true);
         globalConfig.setOpen(false);
@@ -294,8 +323,34 @@ public class CodeGenerator {
         strategyConfig.setColumnNaming(NamingStrategy.underline_to_camel);
         strategyConfig.setEntityLombokModel(true);
         strategyConfig.setRestControllerStyle(true);
+//        strategyConfig.setSuperEntityColumns("id");
         strategyConfig.setInclude(tableName);
         strategyConfig.setControllerMappingHyphenStyle(true);
         return strategyConfig;
+    }
+
+    /**
+     * 首字母大写
+     *
+     * @param string    字符串
+     * @return          字符串
+     */
+    private static String toUpperCase4Index(String string) {
+        char[] methodName = string.toCharArray();
+        methodName[0] = toUpperCase(methodName[0]);
+        return String.valueOf(methodName);
+    }
+
+    /**
+     * 字符转成大写
+     *
+     * @param chars
+     * @return
+     */
+    private static char toUpperCase(char chars) {
+        if (97 <= chars && chars <= 122) {
+            chars ^= 32;
+        }
+        return chars;
     }
 }
