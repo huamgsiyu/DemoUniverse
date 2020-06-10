@@ -18,6 +18,7 @@
         <module>SpringBoot-Quartz</module>
         <module>Swagger2-Dependency</module>
         <module>MybatisGenerator</module>
+        <module>Swagger2Authentication</module>
     </modules>
 
     <parent>
