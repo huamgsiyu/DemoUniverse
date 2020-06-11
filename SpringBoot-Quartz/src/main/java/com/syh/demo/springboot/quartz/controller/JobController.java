@@ -1,23 +1,11 @@
 package com.syh.demo.springboot.quartz.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.github.pagehelper.PageInfo;
-import com.syh.demo.springboot.quartz.entity.JobAndTrigger;
-import com.syh.demo.springboot.quartz.dao.IJobAndTriggerService;
 import com.syh.demo.springboot.quartz.service.JobAndTriggerService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.quartz.JobKey;
-import org.quartz.Scheduler;
-import org.quartz.TriggerKey;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * JobController
