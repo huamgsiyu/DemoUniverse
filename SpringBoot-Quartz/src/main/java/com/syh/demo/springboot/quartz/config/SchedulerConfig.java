@@ -18,40 +18,45 @@ import java.util.Properties;
  * @author HSY
  * @since 2020/06/01 22:41
  */
-
 @Configuration
 public class SchedulerConfig {
 
-    @Bean(name="SchedulerFactory")
+    /**
+     * 通过SchedulerFactoryBean获取Scheduler的实例
+     * @return  {@link Scheduler}
+     * @throws IOException
+     */
+    @Bean(name = "Scheduler")
+    public Scheduler scheduler() throws IOException {
+        return schedulerFactoryBean().getScheduler();
+    }
+
+    @Bean(name = "SchedulerFactory")
     public SchedulerFactoryBean schedulerFactoryBean() throws IOException {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         factory.setQuartzProperties(quartzProperties());
         return factory;
     }
 
+    /**
+     * 读取quartz.properties中的属性并注入后再初始化对象
+     * @return  {@link Properties}
+     * @throws IOException  文件不存在
+     */
     @Bean
     public Properties quartzProperties() throws IOException {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
         propertiesFactoryBean.setLocation(new ClassPathResource("/quartz.properties"));
-        //在quartz.properties中的属性被读取并注入后再初始化对象
         propertiesFactoryBean.afterPropertiesSet();
         return propertiesFactoryBean.getObject();
     }
 
     /**
      * quartz初始化监听器
+     * @return {@link QuartzInitializerListener}
      */
     @Bean
     public QuartzInitializerListener executorListener() {
         return new QuartzInitializerListener();
     }
-
-    /**
-     * 通过SchedulerFactoryBean获取Scheduler的实例
-     */
-    @Bean(name="Scheduler")
-    public Scheduler scheduler() throws IOException {
-        return schedulerFactoryBean().getScheduler();
-    }
-
 }

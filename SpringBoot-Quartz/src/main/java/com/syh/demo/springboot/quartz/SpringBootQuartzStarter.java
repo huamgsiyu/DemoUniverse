@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 2020/06/01 23:18
  */
 
-@MapperScan("com.syh.demo.springboot.quartz.dao")
+@MapperScan("com.syh.demo.springboot.quartz.mapper")
 @SpringBootApplication
 public class SpringBootQuartzStarter {
     public static void main(String[] args) {

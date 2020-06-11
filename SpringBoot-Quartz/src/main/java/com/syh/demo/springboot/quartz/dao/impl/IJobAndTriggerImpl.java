@@ -1,13 +1,12 @@
-package com.syh.demo.springboot.quartz.service.impl;
+package com.syh.demo.springboot.quartz.dao.impl;
 
 
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
-import com.syh.demo.springboot.quartz.dao.JobAndTriggerMapper;
+import com.syh.demo.springboot.quartz.mapper.JobAndTriggerMapper;
 import com.syh.demo.springboot.quartz.entity.JobAndTrigger;
-import com.syh.demo.springboot.quartz.service.IJobAndTriggerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.syh.demo.springboot.quartz.dao.IJobAndTriggerService;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -19,17 +18,18 @@ import com.github.pagehelper.PageHelper;
  * @since 2020/06/01 23:20
  */
 @Service
-public class JobAndTriggerImpl implements IJobAndTriggerService {
+public class IJobAndTriggerImpl implements IJobAndTriggerService {
 
-    @Autowired
-    private JobAndTriggerMapper jobAndTriggerMapper;
+    private final JobAndTriggerMapper jobAndTriggerMapper;
+
+    public IJobAndTriggerImpl(JobAndTriggerMapper jobAndTriggerMapper) {
+        this.jobAndTriggerMapper = jobAndTriggerMapper;
+    }
 
     @Override
     public PageInfo<JobAndTrigger> getJobAndTriggerDetails(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<JobAndTrigger> list = jobAndTriggerMapper.getJobAndTriggerDetails();
-        PageInfo<JobAndTrigger> page = new PageInfo<JobAndTrigger>(list);
-        return page;
+        return new PageInfo<>(list);
     }
-
 }

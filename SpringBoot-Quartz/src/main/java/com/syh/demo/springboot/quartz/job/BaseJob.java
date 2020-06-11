@@ -12,6 +12,11 @@ import org.quartz.JobExecutionException;
  */
 public interface BaseJob extends Job{
 
+    /**
+     * Job执行接口
+     * @param context   执行内容
+     * @throws JobExecutionException    执行时发生的异常
+     */
     @Override
     void execute(JobExecutionContext context) throws JobExecutionException;
 }
