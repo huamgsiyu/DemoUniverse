@@ -19,6 +19,7 @@
         <module>Swagger2-Dependency</module>
         <module>MybatisGenerator</module>
         <module>Swagger2Authentication</module>
+        <module>Multi-DataSource-Jta</module>
     </modules>
 
     <parent>
@@ -335,7 +336,13 @@
             </dependency>
             <!-- END quartz -->
 
-
+            <!-- Atomikos 分布式事务 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jta-atomikos</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <!-- END Atomikos 分布式事务 -->
 
         </dependencies>
     </dependencyManagement>

@@ -1,0 +1,72 @@
+package com.syh.demo.multi.datasource.jta.controller;
+
+import com.syh.demo.multi.datasource.jta.entity.Student;
+import com.syh.demo.multi.datasource.jta.entity.Teacher;
+import com.syh.demo.multi.datasource.jta.service.StudentService;
+import com.syh.demo.multi.datasource.jta.service.TeacherService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
+
+/**
+ * 多数据源事务测试
+ * 
+ * @author acer
+ *
+ */
+@RestController
+@Api(tags = "多数据源")
+public class TransactionController {
+
+	private final StudentService studentService;
+	private final TeacherService teacherService;
+
+	public TransactionController(StudentService studentService,
+								 TeacherService teacherService) {
+		this.studentService = studentService;
+		this.teacherService = teacherService;
+	}
+
+	@PostMapping("/student")
+	public String saveStudent(@RequestBody Student student) {
+		student.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		studentService.saveStudent(student);
+		return "success";
+	}
+
+	@PostMapping("/teacher")
+	public String saveTeacher(@RequestBody Teacher teacher) {
+		teacher.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		teacherService.saveTeacher(teacher);
+		return "success";
+	}
+
+	@ApiOperation(value = "开始事务测试：结果是一个插入进去了，属于非正常现象")
+	@PostMapping("/test")
+	public String test(@RequestBody Student student) {
+		student.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		studentService.saveStudent2(student);
+		return "success";
+	}
+
+
+	@ApiOperation(value = "开始事务测试：结果是两个都没法插入---属于正常现象")
+	@PostMapping("/test2")
+	public String test2(@RequestBody Student student) {
+		student.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		studentService.saveStudent3(student);
+		return "success";
+	}
+
+	@ApiOperation(value = "开始事务测试：结果是一个插入进去了，属于非正常现象")
+	@PostMapping("/test3")
+	public String test3(@RequestBody Student student) {
+		student.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		studentService.saveStudent4(student);
+		return "success";
+	}
+}
