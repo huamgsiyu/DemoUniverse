@@ -10,6 +10,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
@@ -19,6 +20,16 @@ import javax.sql.DataSource;
 @Configuration
 @MapperScan(basePackages = "com.syh.demo.multi.data.source.mapper.test02", sqlSessionFactoryRef = "test2SqlSessionFactory")
 public class DataSourceConfig2 {
+
+	/**
+	 * 事务管理
+	 * @param dataSource	数据源
+	 * @return	{@link DataSourceTransactionManager}
+	 */
+	@Bean(name = "test2TransactionManager")
+	public DataSourceTransactionManager testTransactionManager(@Qualifier("test2DataSource") DataSource dataSource) {
+		return new DataSourceTransactionManager(dataSource);
+	}
 
 	/**
 	 *	读取application.properties中的spring.datasource.test2前缀的配置参数映射成为一个对象

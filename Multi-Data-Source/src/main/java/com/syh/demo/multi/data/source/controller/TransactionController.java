@@ -4,8 +4,9 @@ import com.syh.demo.multi.data.source.entity.Student;
 import com.syh.demo.multi.data.source.entity.Teacher;
 import com.syh.demo.multi.data.source.service.StudentService;
 import com.syh.demo.multi.data.source.service.TeacherService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import java.util.UUID;
  *
  */
 @RestController
+@Api(tags = "多数据源")
 public class TransactionController {
 
 	private final StudentService studentService;
@@ -27,72 +29,41 @@ public class TransactionController {
 		this.teacherService = teacherService;
 	}
 
-	@RequestMapping("/savetest.do")
-	public String saveStudent() {
-		Student student = new Student();
+	@PostMapping("/student")
+	public String saveStudent(@RequestBody Student student) {
 		student.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-		student.setScore(100);
-		student.setClassId("1");
-		student.setUserId("hsy");
 		studentService.saveStudent(student);
 		return "success";
 	}
 
-	@RequestMapping("/saveteacher.do")
-	public String saveTeacher() {
-		Teacher teacher = new Teacher();
+	@PostMapping("/teacher")
+	public String saveTeacher(@RequestBody Teacher teacher) {
 		teacher.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-		teacher.setName("苍老师");
-		teacher.setClassId("1");
 		teacherService.saveTeacher(teacher);
 		return "success";
 	}
 
-	// ########################开始事务测试##########################
-	/**
-	 * 结果是一个插入进去了，属于非正常现象
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/test.do")
-	public String test() {
-		Student student = new Student();
+	@ApiOperation(value = "开始事务测试：结果是一个插入进去了，属于非正常现象")
+	@PostMapping("/test")
+	public String test(@RequestBody Student student) {
 		student.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-		student.setScore(70);
-		student.setClassId("1");
-		student.setUserId("a");
 		studentService.saveStudent2(student);
 		return "success";
 	}
 
-	/**
-	 * 结果是两个都没法插入---属于正常现象
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/test2.do")
-	public String test2() {
-		Student student = new Student();
+
+	@ApiOperation(value = "开始事务测试：结果是两个都没法插入---属于正常现象")
+	@PostMapping("/test2")
+	public String test2(@RequestBody Student student) {
 		student.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-		student.setScore(70);
-		student.setClassId("1");
-		student.setUserId("a");
 		studentService.saveStudent3(student);
 		return "success";
 	}
 
-	/**
-	 * 结果是一个插入进去了，属于非正常现象
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/test3.do")
-	public String test3() {
-		Student student = new Student();
+	@ApiOperation(value = "开始事务测试：结果是一个插入进去了，属于非正常现象")
+	@PostMapping("/test3")
+	public String test3(@RequestBody Student student) {
 		student.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-		student.setScore(70);
-		student.setClassId("1");
-		student.setUserId("a");
 		studentService.saveStudent4(student);
 		return "success";
 	}

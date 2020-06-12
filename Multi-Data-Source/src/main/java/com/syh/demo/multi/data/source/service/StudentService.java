@@ -13,14 +13,17 @@ import java.util.UUID;
  * @author HSY
  */
 @Service
-@Transactional(rollbackFor = Exception.class)
+@Transactional(rollbackFor = Exception.class, transactionManager = "test1TransactionManager")
 public class StudentService {
 	private final StudentDao studentDao;
 	private final TeacherDao teacherDao;
+	private final TeacherService teacherService;
 
-	public StudentService(StudentDao studentDao, TeacherDao teacherDao) {
+	public StudentService(StudentDao studentDao, TeacherDao teacherDao,
+						  TeacherService teacherService) {
 		this.studentDao = studentDao;
 		this.teacherDao = teacherDao;
+		this.teacherService = teacherService;
 	}
 
 	public void saveStudent(Student student) {
@@ -28,18 +31,26 @@ public class StudentService {
 	}
 
 	public void saveStudent2(Student student) {
-		loadTeacher(student);
+		Teacher teacher = new Teacher();
+		teacher.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		teacher.setName("王老师");
+		teacher.setClassId("1");
+		teacherService.saveTeacher(teacher);
+		int i = 1 / 0;
+		studentDao.save(student);
 	}
 
 	public void saveStudent3(Student student) {
-		loadTeacher(student);
+		Teacher teacher = new Teacher();
+		teacher.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		teacher.setName("王老师");
+		teacher.setClassId("1");
+		teacherService.saveTeacher2(teacher);
+		int i = 1 / 0;
+		studentDao.save(student);
 	}
 
 	public void saveStudent4(Student student) {
-		loadTeacher(student);
-	}
-
-	private void loadTeacher(Student student) {
 		Teacher teacher = new Teacher();
 		teacher.setId(UUID.randomUUID().toString().replaceAll("-", ""));
 		teacher.setName("王老师");
@@ -48,5 +59,4 @@ public class StudentService {
 		int i = 1 / 0;
 		studentDao.save(student);
 	}
-
 }

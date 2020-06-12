@@ -16,27 +16,9 @@ public class Teacher {
 	@ApiModelProperty("主键")
 	private String id;
 
-	@ApiModelProperty("姓名")
+	@ApiModelProperty(value = "姓名", example = "hqh")
 	private String name;
 
-	@ApiModelProperty("班级Id")
+	@ApiModelProperty(value = "班级Id", example = "14004")
 	private String classId;
-
-	/*
-		SET NAMES utf8mb4;
-		SET FOREIGN_KEY_CHECKS = 0;
-
-		-- ----------------------------
-		-- Table structure for teacher
-		-- ----------------------------
-		DROP TABLE IF EXISTS `teacher`;
-		CREATE TABLE `teacher`  (
-		  `id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-		  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-		  `classId` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-		  PRIMARY KEY (`id`) USING BTREE
-		) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
-		SET FOREIGN_KEY_CHECKS = 1;
-	 */
 }

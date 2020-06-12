@@ -15,30 +15,12 @@ public class Student {
 	@ApiModelProperty("主键")
 	private String id;
 
-	@ApiModelProperty("用户Id")
+	@ApiModelProperty(value = "用户Id", example = "hsy")
 	private String userId;
 
-	@ApiModelProperty("分数")
+	@ApiModelProperty(value = "分数", example = "100")
 	private int score;
 
-	@ApiModelProperty("班级Id")
+	@ApiModelProperty(value = "班级Id", example = "14003")
 	private String classId;
-	/*
-		SET NAMES utf8mb4;
-		SET FOREIGN_KEY_CHECKS = 0;
-
-		-- ----------------------------
-		-- Table structure for student
-		-- ----------------------------
-		DROP TABLE IF EXISTS `student`;
-		CREATE TABLE `student`  (
-		  `id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-		  `userId` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-		  `score` int(10) NULL DEFAULT NULL,
-		  `classId` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-		  PRIMARY KEY (`id`) USING BTREE
-		) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
-		SET FOREIGN_KEY_CHECKS = 1;
-	 */
 }

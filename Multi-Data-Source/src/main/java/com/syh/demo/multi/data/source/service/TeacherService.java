@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author HSY
  */
 @Service
-@Transactional(rollbackFor = Exception.class)
+@Transactional(rollbackFor = Exception.class, transactionManager = "test2TransactionManager")
 public class TeacherService {
 	private final TeacherDao teacherDao;
 
