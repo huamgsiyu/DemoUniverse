@@ -20,6 +20,7 @@
         <module>MybatisGenerator</module>
         <module>Swagger2Authentication</module>
         <module>Multi-DataSource-Jta</module>
+        <module>Multi-DataSource-Aop</module>
     </modules>
 
     <parent>
