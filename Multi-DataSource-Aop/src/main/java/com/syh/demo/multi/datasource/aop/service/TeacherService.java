@@ -1,7 +1,8 @@
 package com.syh.demo.multi.datasource.aop.service;
 
-import com.syh.demo.multi.datasource.aop.dao.test02.TeacherDao;
+import com.syh.demo.multi.datasource.aop.config.DataSourceType;
 import com.syh.demo.multi.datasource.aop.entity.Teacher;
+import com.syh.demo.multi.datasource.aop.mapper.test02.TeacherMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,18 +12,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class TeacherService {
-	private final TeacherDao teacherDao;
+	private final TeacherMapper teacherMapper;
 
-	public TeacherService(TeacherDao teacherDao) {
-		this.teacherDao = teacherDao;
+	public TeacherService(TeacherMapper teacherMapper) {
+		this.teacherMapper = teacherMapper;
 	}
 
+
 	public void saveTeacher(Teacher teacher) {
-		teacherDao.save(teacher);
+		DataSourceType.setDataBaseType(DataSourceType.DataBaseType.TEST02);
+		teacherMapper.save(teacher);
 	}
 
 	public void saveTeacher2(Teacher teacher) {
 		int i = 1 / 0;
-		teacherDao.save(teacher);
+		teacherMapper.save(teacher);
 	}
 }
