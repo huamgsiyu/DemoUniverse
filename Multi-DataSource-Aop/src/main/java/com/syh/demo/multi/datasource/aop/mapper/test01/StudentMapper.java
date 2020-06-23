@@ -13,6 +13,6 @@ public interface StudentMapper {
 	 * 新增
 	 * @param student	学生
 	 */
-	void save(Student student);
+	Integer save(Student student);
 
 }

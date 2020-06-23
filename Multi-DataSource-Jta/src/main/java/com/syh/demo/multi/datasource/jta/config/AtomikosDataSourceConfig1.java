@@ -29,10 +29,10 @@ public class AtomikosDataSourceConfig1 {
 	 * @param dataSource	数据源
 	 * @return	{@link DataSourceTransactionManager}
 	 */
-	@Bean(name = "test1TransactionManager")
-	public DataSourceTransactionManager testTransactionManager(@Qualifier("test1DataSource") DataSource dataSource) {
-		return new DataSourceTransactionManager(dataSource);
-	}
+//	@Bean(name = "test1TransactionManager")
+//	public DataSourceTransactionManager testTransactionManager(@Qualifier("test1DataSource") DataSource dataSource) {
+//		return new DataSourceTransactionManager(dataSource);
+//	}
 
 	/**`
 	 *	读取application.properties中的spring.datasource.test1前缀的配置参数映射成为一个对象
