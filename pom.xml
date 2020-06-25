@@ -21,6 +21,7 @@
         <module>Swagger2Authentication</module>
         <module>Multi-DataSource-Jta</module>
         <module>Multi-DataSource-Aop</module>
+        <module>MybaitsPlusBaseMapper</module>
     </modules>
 
     <parent>
