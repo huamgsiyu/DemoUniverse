@@ -23,6 +23,7 @@
         <module>Multi-DataSource-Aop</module>
         <module>MybaitsPlusBaseMapper</module>
         <module>ITextPdf</module>
+        <module>RedisQueue</module>
     </modules>
 
     <parent>
@@ -379,11 +380,24 @@
         </plugins>
     </build>
 
+    <!--使用阿里云-->
     <repositories>
         <repository>
-            <id>nexus-aliyun</id>
-            <name>Nexus aliyun</name>
+            <id>maven-net-ali</id>
+            <name>Maven Ali Mirror</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
         </repository>
+        <repository>
+            <id>axis2</id>
+            <name>axis2</name>
+            <url>https://maven.wso2.org/nexus/content/repositories/releases/</url>
+        </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven-net-ali</id>
+            <name>Maven Ali Mirror</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
